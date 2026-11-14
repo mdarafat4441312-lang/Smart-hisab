@@ -1,1 +1,2 @@
+(function () {
 app.js
