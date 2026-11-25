@@ -6,6 +6,14 @@
 <meta name="theme-color" content="#0f766e">
 <title>SMART HISAB</title>
 <link rel="stylesheet" href="style.css">
+<script>
+window.onerror = function (m, s, l) {
+  var d = document.createElement('pre');
+  d.style.cssText = 'color:#b91c1c;background:#fee2e2;padding:12px;white-space:pre-wrap;font-size:13px';
+  d.textContent = 'ERROR: ' + m + ' | ' + String(s).split('/').pop() + ' line ' + l;
+  document.body.appendChild(d);
+};
+</script>
 </head>
 <body>
 <div id="app"></div>
