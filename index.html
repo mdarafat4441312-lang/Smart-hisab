@@ -7,16 +7,26 @@
 <title>SMART HISAB</title>
 <link rel="stylesheet" href="style.css">
 <script>
-window.onerror = function (m, s, l) {
+function shShow(t) {
   var d = document.createElement('pre');
-  d.style.cssText = 'color:#b91c1c;background:#fee2e2;padding:12px;white-space:pre-wrap;font-size:13px';
-  d.textContent = 'ERROR: ' + m + ' | ' + String(s).split('/').pop() + ' line ' + l;
-  document.body.appendChild(d);
-};
+  d.style.cssText = 'color:#b91c1c;background:#fee2e2;padding:12px;margin:8px;white-space:pre-wrap;font-size:13px;position:relative;z-index:99999';
+  d.textContent = t;
+  (document.body || document.documentElement).appendChild(d);
+}
+window.addEventListener('error', function (e) {
+  if (e.target && e.target !== window && (e.target.src || e.target.href)) {
+    shShow('FILE NOT LOADED: ' + (e.target.src || e.target.href));
+  } else {
+    shShow('ERROR: ' + e.message + ' | ' + String(e.filename).split('/').pop() + ' line ' + e.lineno);
+  }
+}, true);
+window.addEventListener('unhandledrejection', function (e) {
+  shShow('PROMISE: ' + (e.reason && e.reason.message ? e.reason.message : e.reason));
+});
 </script>
 </head>
 <body>
-<div id="app"></div>
+<div id="app"><p style="padding:16px;font-family:sans-serif">লোড হচ্ছে... (index OK)</p></div>
 <div id="toast"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="config.js"></script>
