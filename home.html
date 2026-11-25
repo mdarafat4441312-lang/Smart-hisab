@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<title>SMART HISAB</title>
+<link rel="stylesheet" href="style.css?v=13">
+<script>
+function shShow(t) {
+  var d = document.createElement('pre');
+  d.style.cssText = 'color:#b91c1c;background:#fee2e2;padding:12px;margin:8px;white-space:pre-wrap;font-size:13px;position:relative;z-index:99999';
+  d.textContent = t;
+  (document.body || document.documentElement).appendChild(d);
+}
+window.addEventListener('error', function (e) {
+  if (e.target && e.target !== window && (e.target.src || e.target.href)) {
+    shShow('FILE NOT LOADED: ' + (e.target.src || e.target.href));
+  } else {
+    shShow('ERROR: ' + e.message + ' | ' + String(e.filename).split('/').pop() + ' line ' + e.lineno);
+  }
+}, true);
+</script>
+</head>
+<body>
+<div id="app"><p style="padding:16px;font-family:sans-serif">লোড হচ্ছে... (home OK)</p></div>
+<div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config2.js"></script>
+<script src="i18n.js?v=13"></script>
+<script src="app.js?v=13"></script>
+</body>
+</html>
